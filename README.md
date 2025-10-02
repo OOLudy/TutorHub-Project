@@ -14,14 +14,16 @@
 npm install python
 ```
 ### Visual Studio Code
-参考网上教程
+
+### Flask
+npm install flask
 
 ### Django
 ```Powershell
  pip install django djangorestframework django-cors-headers
 ```
-### Vue 下载
-看官网
+### Vue 
+
 ### Axios
 ```PowerShell
 npm install axios
