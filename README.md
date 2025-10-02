@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## 简介
 暂无。
 
@@ -34,3 +35,6 @@ npm install axios
 ### 协作
 [多人协作 - Git教程 - 廖雪峰的官方网站](https://liaoxuefeng.com/books/git/branch/collaboration/index.html)
 
+=======
+# TutorHub-Project
+>>>>>>> d0431394fa66aceaf63071153d7b0d01852f8813
