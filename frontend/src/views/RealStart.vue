@@ -1,8 +1,5 @@
-
-<!-- 因为我懒得写用户，所以只有访问/realstart才可以删除 -->
-
 <template>
-<div class="start-page">
+  <div class="start-page">
     <div class="container">
       <div class="page-header">
         <h1>上传PDF文档</h1>
@@ -73,7 +70,7 @@
         </div>
       </div>
 
-      <!-- 文档列表 -->
+      <!-- 上传历史 -->
       <div v-if="documents.length > 0" class="documents-section">
         <h2>已上传的文档</h2>
         <div class="documents-grid">
@@ -92,6 +89,7 @@
             </div>
             <div class="document-actions">
               <button @click="viewDocument(doc)" class="btn btn-sm btn-secondary">查看</button>
+              <router-link :to="'/process'" class="btn btn-sm btn-process">处理</router-link>
               <button @click="deleteDocument(doc.id)" class="btn btn-sm btn-danger">删除</button>
             </div>
           </div>
@@ -206,7 +204,6 @@ export default {
     },
     async fetchDocuments() {
       try {
-        // 使用默认的list端点，而不是my_documents
         const response = await axios.get(`${API_URL}/pdfs/`);
         this.documents = response.data;
       } catch (error) {
@@ -246,7 +243,21 @@ export default {
 </script>
 
 <style scoped>
-/* 样式保持不变 */
+/* 样式保持不变，只添加处理按钮样式 */
+.btn-process {
+  background: #9b59b6;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-process:hover {
+  background: #8e44ad;
+  color: white;
+}
+
+/* 其他样式与之前相同 */
 .start-page {
   min-height: calc(100vh - 60px);
   padding: 40px 0;
@@ -386,7 +397,7 @@ export default {
 
 .document-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
 .document-icon {

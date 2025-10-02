@@ -12,8 +12,17 @@
           <router-link to="/start" class="nav-link">开始</router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/process" class="nav-link">AI处理</router-link>
+        </li>
+
+        <li class="nav-item">
           <router-link to="/task" class="nav-link">任务管理</router-link>
         </li>
+
+        <li class="nav-item">
+  <router-link to="/settings" class="nav-link">设置</router-link>
+</li>
+        
       </ul>
       <div class="nav-toggle" @click="toggleMenu">
         <span class="bar"></span>

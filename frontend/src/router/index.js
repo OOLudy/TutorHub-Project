@@ -3,6 +3,8 @@ import Home from '../views/Home.vue'
 import Task from '../views/Task.vue'
 import Startpage from '../views/Start.vue'
 import RealStartpage from '../views/RealStart.vue'
+import PatchouliKnowledge from '../views/Process.vue'
+import SettingsPage from '../views/Settings.vue'  
 
 const routes = [
   {
@@ -24,6 +26,16 @@ const routes = [
     path: '/realstart',
     name: 'RealStart',
     component: RealStartpage
+  },
+  {
+    path: '/process',
+    name: 'PatchouliKnowledge',
+    component: PatchouliKnowledge
+  },
+  {
+    path: '/settings',
+    name: 'SettingsPage',
+    component: SettingsPage 
   }
 ]
 
