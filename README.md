@@ -6,6 +6,10 @@
 111
 Joe
 
+## AI Testing
+API source: AIHUBMIX
+Reccomend Model: GPTo3
+
 ## 下载前置
 ### Nodejs
 官网直接下
