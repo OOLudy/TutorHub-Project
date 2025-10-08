@@ -7,6 +7,9 @@ import PatchouliKnowledge from '../views/Process.vue'
 import SettingsPage from '../views/Settings.vue'  
 import CheckAPI from '../views/ApiDocs.vue'
 
+import ASS from '../views/AIGENERATEDSHIT.vue'
+
+
 const routes = [
   {
     path: '/',
@@ -48,7 +51,13 @@ const routes = [
     name: 'CheckAPI',
     component: CheckAPI,
     meta:{title:'API Docs - тμтoяχαv'}
+  },
+  {
+    path: '/shit',
+    name: 'AiShit',
+    component: ASS
   }
+
 ]
 
 const router = createRouter({

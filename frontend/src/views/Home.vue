@@ -37,18 +37,32 @@ export default {
 <style scoped>
 .home {
   min-height: calc(100vh - 60px);
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
 }
 
+/* ===== Hero Section ===== */
 .hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #5B6BF2 0%, #748DF5 100%);
+  color: #ffffff;
   text-align: center;
   padding: 100px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15), transparent 60%);
+  pointer-events: none;
 }
 
 .hero-section h1 {
   font-size: 3rem;
   margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 .hero-section p {
@@ -57,27 +71,32 @@ export default {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  color: #e2e6ff;
 }
 
 .cta-button {
   display: inline-block;
-  background-color: #fff;
-  color: #667eea;
+  background-color: #ffffff;
+  color: #4752C4;
   padding: 12px 30px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: bold;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .cta-button:hover {
+  background-color: #8EA7FF;
+  color: #ffffff;
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(88,101,242,0.3);
 }
 
+/* ===== Features Section ===== */
 .features-section {
-  padding: 80px 20px;
-  background-color: #f8f9fa;
+  padding: 100px 20px 120px;
+  background-color: #f5f7ff;
 }
 
 .container {
@@ -89,7 +108,8 @@ export default {
   text-align: center;
   margin-bottom: 50px;
   font-size: 2.5rem;
-  color: #2c3e50;
+  color: #4752C4;
+  font-weight: 600;
 }
 
 .features-grid {
@@ -99,26 +119,31 @@ export default {
 }
 
 .feature-card {
-  background: white;
+  background: #ffffff;
   padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(88,101,242,0.1);
   text-align: center;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(142, 167, 255, 0.2);
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(88,101,242,0.25);
 }
 
 .feature-card h3 {
-  color: #2c3e50;
+  color: #5865F2;
   margin-bottom: 15px;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .feature-card p {
-  color: #7f8c8d;
+  color: #6b7280;
   line-height: 1.6;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {

@@ -52,11 +52,12 @@ export default {
 }
 </script>
 
+
 <style scoped>
 .navbar {
-  background-color: #1e65ac;
+  background: linear-gradient(90deg, #4F5BD5, #5865F2);
   padding: 0 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .nav-container {
@@ -73,6 +74,7 @@ export default {
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
 .nav-menu {
@@ -90,12 +92,14 @@ export default {
   color: #fff;
   text-decoration: none;
   padding: 10px 15px;
-  border-radius: 4px;
-  transition: background-color 0.3s;
+  border-radius: 6px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-weight: 500;
 }
 
 .nav-link:hover, .nav-link.router-link-active {
-  background-color: #34495e;
+  background-color: rgba(255,255,255,0.15);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
 .nav-toggle {
@@ -118,11 +122,11 @@ export default {
     left: -100%;
     top: 60px;
     flex-direction: column;
-    background-color: #2c3e50;
+    background-color: #5865F2;
     width: 100%;
     text-align: center;
     transition: 0.3s;
-    box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 27px rgba(0,0,0,0.1);
   }
 
   .nav-menu.active {
@@ -130,7 +134,7 @@ export default {
   }
 
   .nav-item {
-    margin: 10px 0;
+    margin: 15px 0;
   }
 
   .nav-toggle {
