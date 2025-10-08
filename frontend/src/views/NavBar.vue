@@ -20,9 +20,16 @@
         </li>
 
         <li class="nav-item">
-  <router-link to="/settings" class="nav-link">设置</router-link>
-</li>
+        <router-link to="/settings" class="nav-link">设置</router-link>
+        </li>
         
+        <li class="nav-item">
+          <router-link to="/checkapi" class="nav-link">API VIEW</router-link> 
+        </li>
+        <!--这个可以打开API用法，看看好吗-->
+
+        <!-- Add more navigation items as needed -->
+
       </ul>
       <div class="nav-toggle" @click="toggleMenu">
         <span class="bar"></span>

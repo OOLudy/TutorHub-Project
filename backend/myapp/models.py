@@ -32,6 +32,8 @@ class PDFDocument(models.Model):
     def filename(self):
         return os.path.basename(self.pdf_file.name)
     
+
+## 神必reciever写法
 @receiver(post_delete, sender=PDFDocument)
 def delete_pdf_file(sender, instance, **kwargs):
     """

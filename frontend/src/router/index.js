@@ -5,6 +5,7 @@ import Startpage from '../views/Start.vue'
 import RealStartpage from '../views/RealStart.vue'
 import PatchouliKnowledge from '../views/Process.vue'
 import SettingsPage from '../views/Settings.vue'  
+import CheckAPI from '../views/ApiDocs.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/settings',
     name: 'SettingsPage',
     component: SettingsPage 
+  },
+  {
+    path: '/checkapi',
+    name: 'CheckAPI',
+    component: CheckAPI
   }
 ]
 
