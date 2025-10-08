@@ -2,7 +2,7 @@
   <div class="home">
     <div class="hero-section">
       <h1>欢迎使用TutorHub-Project</h1>
-      <p>一个AI辅助文档分析工具</p>
+      <p>тμтoяχαv ряоjест demo</p>
       <router-link to="/start" class="cta-button">开始上传文件</router-link>
     </div>
     

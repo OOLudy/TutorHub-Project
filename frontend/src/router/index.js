@@ -16,38 +16,51 @@ const routes = [
   {
     path: '/task',
     name: 'Task',
-    component: Task
+    component: Task,
+    meta:{title:'Task - тμтoяχαv'}
   },
   {
     path: '/start',
     name: 'Start',
-    component: Startpage
+    component: Startpage,
+    meta:{title:'Start - тμтoяχαv'}
   },
   {
     path: '/realstart',
     name: 'RealStart',
-    component: RealStartpage
+    component: RealStartpage,
+    meta:{title:'可删除页面 - тμтoяχαv'}
   },
   {
     path: '/process',
     name: 'PatchouliKnowledge',
-    component: PatchouliKnowledge
+    component: PatchouliKnowledge,
+    meta:{title:'	パチュリー - тμтoяχαv'}
   },
   {
     path: '/settings',
     name: 'SettingsPage',
-    component: SettingsPage 
+    component: SettingsPage,
+    meta:{title:'AISettings - тμтoяχαv'} 
   },
   {
     path: '/checkapi',
     name: 'CheckAPI',
-    component: CheckAPI
+    component: CheckAPI,
+    meta:{title:'API Docs - тμтoяχαv'}
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+// Set document title from route meta when navigation completes
+const DEFAULT_TITLE = 'тμтoяχαv ряоjест'
+router.afterEach((to) => {
+  const title = to.meta && to.meta.title ? to.meta.title : DEFAULT_TITLE
+  if (title) document.title = title
 })
 
 export default router
