@@ -11,6 +11,14 @@ API source: AIHUBMIX
 Reccomend Model: GPTo3
 
 ## 下载前置
+### 包
+```
+pip install django djangorestframework django-cors-headers
+pip install firebase-admin django-cors-headers
+pip install django-cors-headers pillow
+pip install faiss-cpu PyPDF2 python-dotenv requests numpy
+```
+
 ### Nodejs
 官网直接下
 ### Python
