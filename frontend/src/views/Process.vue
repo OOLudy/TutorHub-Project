@@ -2,16 +2,16 @@
   <div class="process-page">
     <div class="container">
       <div class="page-header">
-        <h1>AI文档处理</h1>
-        <p>选择文档并使用AI进行分析、总结和出题</p>
+        <h1>AI Document Processing</h1>
+        <p>Select a document and use AI to analyze, summarize, or generate questions</p>
       </div>
 
       <!-- 文档选择区域 -->
       <div class="document-selection">
-        <h2>选择要处理的文档</h2>
+        <h2>Select a Document to Process</h2>
         <div v-if="documents.length === 0" class="empty-state">
-          <p>暂无可用文档</p>
-          <router-link to="/start" class="btn btn-primary">上传文档</router-link>
+          <p>No available documents</p>
+          <router-link to="/start" class="btn btn-primary">Upload Document</router-link>
         </div>
         <div v-else class="documents-grid">
           <div 
@@ -25,8 +25,8 @@
             <div class="document-info">
               <h4>{{ doc.title }}</h4>
               <p class="document-meta">
-                大小: {{ formatFileSize(doc.file_size) }} • 
-                上传时间: {{ formatDate(doc.uploaded_at) }}
+                Size: {{ formatFileSize(doc.file_size) }} • 
+                Uploaded: {{ formatDate(doc.uploaded_at) }}
               </p>
             </div>
             <div class="select-indicator">
@@ -38,27 +38,27 @@
 
       <!-- 处理选项 -->
       <div v-if="selectedDocument" class="process-options-section">
-        <h2>选择处理类型</h2>
+        <h2>Select processing type</h2>
         <div class="process-options">
           <div class="process-option" @click="processDocument('summary')">
             <div class="option-icon">📋</div>
             <div class="option-content">
-              <h4>总结要点</h4>
-              <p>生成文档的结构化总结和关键要点</p>
+              <h4>Summarize</h4>
+              <p>Generate a structured summary and key points of the document</p>
             </div>
           </div>
           <div class="process-option" @click="processDocument('analysis')">
             <div class="option-icon">🔍</div>
             <div class="option-content">
-              <h4>详细分析</h4>
-              <p>对文档内容进行深度分析和解读</p>
+              <h4>Detailed Analysis</h4>
+              <p>Perform an in-depth analysis and interpretation of the document</p>
             </div>
           </div>
           <div class="process-option" @click="processDocument('questions')">
             <div class="option-icon">📝</div>
             <div class="option-content">
-              <h4>生成题目</h4>
-              <p>基于文档内容创建多种题型的测试题目</p>
+              <h4>Generate Questions</h4>
+              <p>Create test questions of various types based on the document content</p>
             </div>
           </div>
         </div>
@@ -66,13 +66,13 @@
 
       <!-- 处理结果 -->
       <div v-if="resultData.result" class="result-section">
-        <h2>处理结果</h2>
+        <h2>Processing Result</h2>
         <div class="result-header">
           <h3>{{ resultData.document_title }} - {{ getTaskTypeName(resultData.task_type) }}</h3>
           <div class="result-actions">
-            <button @click="copyResult" class="btn btn-secondary">复制结果</button>
-            <button @click="downloadResult" class="btn btn-primary">下载结果</button>
-            <button @click="clearResult" class="btn btn-outline">清除结果</button>
+            <button @click="copyResult" class="btn btn-secondary">Copy Result</button>
+            <button @click="downloadResult" class="btn btn-primary">Download Result</button>
+            <button @click="clearResult" class="btn btn-outline">Clear Result</button>
           </div>
         </div>
         <div class="result-content">
@@ -84,8 +84,8 @@
       <div v-if="isProcessing" class="processing-overlay">
         <div class="processing-indicator">
           <div class="spinner"></div>
-          <h3>正在处理文档</h3>
-          <p>请稍候，这可能需要一些时间...</p>
+          <h3>Processing document</h3>
+          <p>Please wait, this may take a while...</p>
         </div>
       </div>
     </div>
@@ -120,7 +120,7 @@ export default {
         const response = await axios.get(`${API_URL}/pdfs/`);
         this.documents = response.data;
       } catch (error) {
-        console.error('获取文档列表失败:', error);
+        console.error('Failed to fetch documents:', error);
       }
     },
     selectDocument(document) {
@@ -130,7 +130,7 @@ export default {
     },
     async processDocument(taskType) {
       if (!this.selectedDocument) {
-        alert('请先选择要处理的文档');
+        alert('Please select a document first');
         return;
       }
 
@@ -151,11 +151,11 @@ export default {
         if (response.data.success) {
           this.resultData = response.data;
         } else {
-          this.resultData.result = '处理失败：' + (response.data.error || '未知错误');
+          this.resultData.result = 'Processing failed: ' + (response.data.error || 'Unknown error');
         }
       } catch (error) {
-        console.error('处理文档失败:', error);
-        this.resultData.result = '处理失败：' + (error.response?.data?.error || '网络错误');
+        console.error('Failed to process document:', error);
+        this.resultData.result = 'Processing failed: ' + (error.response?.data?.error || 'Network error');
       } finally {
         this.isProcessing = false;
       }
@@ -169,15 +169,15 @@ export default {
     },
     getTaskTypeName(type) {
       const names = {
-        'summary': '总结要点',
-        'analysis': '详细分析',
-        'questions': '生成题目'
+        'summary': 'Summarize',
+        'analysis': 'Detailed Analysis',
+        'questions': 'Generate Questions'
       };
       return names[type] || type;
     },
     copyResult() {
       navigator.clipboard.writeText(this.resultData.result).then(() => {
-        alert('结果已复制到剪贴板');
+        alert('Result copied to clipboard');
       });
     },
     downloadResult() {
@@ -208,7 +208,7 @@ export default {
       return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     },
     formatDate(dateString) {
-      return new Date(dateString).toLocaleDateString('zh-CN');
+      return new Date(dateString).toLocaleDateString('en-US');
     }
   }
 };

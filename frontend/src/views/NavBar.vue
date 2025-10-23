@@ -6,21 +6,21 @@
       </div>
       <ul class="nav-menu">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">首页</router-link>
+          <router-link to="/" class="nav-link">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/start" class="nav-link">开始</router-link>
+          <router-link to="/start" class="nav-link">Start</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/process" class="nav-link">AI处理</router-link>
-        </li>
-
-        <li class="nav-item">
-          <router-link to="/task" class="nav-link">任务管理</router-link>
+          <router-link to="/process" class="nav-link">AI Processing</router-link>
         </li>
 
         <li class="nav-item">
-        <router-link to="/settings" class="nav-link">设置</router-link>
+          <router-link to="/task" class="nav-link">NOT IN USE</router-link>
+        </li>
+
+        <li class="nav-item">
+        <router-link to="/settings" class="nav-link">Settings</router-link>
         </li>
         
         <li class="nav-item">

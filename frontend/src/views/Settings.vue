@@ -2,23 +2,23 @@
   <div class="settings-page">
     <div class="container">
       <div class="page-header">
-        <h1>AI设置</h1>
-        <p>配置您的AI API密钥和模型参数</p>
+        <h1>AI Settings</h1>
+        <p>Configure your AI API key and model parameters</p>
       </div>
 
       <!-- 当前配置状态 -->
       <div class="status-card">
         <div class="status-header">
-          <h3>当前配置状态</h3>
+          <h3>Current Configuration Status</h3>
           <span :class="['status-badge', connectionStatus.class]">
             {{ connectionStatus.text }}
           </span>
         </div>
         <div v-if="activeConfig" class="config-info">
-          <p><strong>配置名称:</strong> {{ activeConfig.name }}</p>
-          <p><strong>API端点:</strong> {{ activeConfig.base_url }}</p>
-          <p><strong>对话模型:</strong> {{ activeConfig.model_name }}</p>
-          <p><strong>嵌入模型:</strong> {{ activeConfig.embedding_model }}</p>
+          <p><strong>Configuration Name:</strong> {{ activeConfig.name }}</p>
+          <p><strong>API Endpoint:</strong> {{ activeConfig.base_url }}</p>
+          <p><strong>Chat Model:</strong> {{ activeConfig.model_name }}</p>
+          <p><strong>Embedding Model:</strong> {{ activeConfig.embedding_model }}</p>
         </div>
         <div v-else class="config-info">
           <p>暂无激活的配置</p>
@@ -26,16 +26,16 @@
       </div>
 
       <!-- 配置列表 -->
-      <div class="configs-section">
+        <div class="configs-section">
         <div class="section-header">
-          <h2>AI配置列表</h2>
+          <h2>AI Configuration List</h2>
           <button @click="showCreateModal = true" class="btn btn-primary">
-            + 添加配置
+            + Add Configuration
           </button>
         </div>
 
         <div v-if="configs.length === 0" class="empty-state">
-          <p>暂无配置，请添加您的第一个AI配置</p>
+          <p>No configurations yet. Please add your first AI configuration</p>
         </div>
 
         <div v-else class="configs-grid">
@@ -53,22 +53,22 @@
                   class="btn btn-sm"
                   :class="config.is_active ? 'btn-success' : 'btn-outline'"
                 >
-                  {{ config.is_active ? '已激活' : '激活' }}
+                  {{ config.is_active ? 'Active' : 'Activate' }}
                 </button>
-                <button @click="editConfig(config)" class="btn btn-sm btn-secondary">编辑</button>
-                <button @click="deleteConfig(config.id)" class="btn btn-sm btn-danger">删除</button>
+                <button @click="editConfig(config)" class="btn btn-sm btn-secondary">Edit</button>
+                <button @click="deleteConfig(config.id)" class="btn btn-sm btn-danger">Delete</button>
               </div>
             </div>
             <div class="config-details">
               <p><strong>API端点:</strong> {{ config.base_url }}</p>
               <p><strong>对话模型:</strong> {{ config.model_name }}</p>
               <p><strong>嵌入模型:</strong> {{ config.embedding_model }}</p>
-              <p><strong>温度:</strong> {{ config.temperature }}</p>
-              <p><strong>最大Token:</strong> {{ config.max_tokens }}</p>
-              <p><strong>API密钥:</strong> {{ maskApiKey(config.api_key) }}</p>
+              <p><strong>Temperature:</strong> {{ config.temperature }}</p>
+              <p><strong>Max Tokens:</strong> {{ config.max_tokens }}</p>
+              <p><strong>API Key:</strong> {{ maskApiKey(config.api_key) }}</p>
             </div>
             <div class="config-footer">
-              <small>更新于: {{ formatDate(config.updated_at) }}</small>
+              <small>Updated at: {{ formatDate(config.updated_at) }}</small>
             </div>
           </div>
         </div>
@@ -78,74 +78,74 @@
       <div v-if="showCreateModal || showEditModal" class="modal-overlay" @click="closeModal">
         <div class="modal-content large-modal" @click.stop>
           <div class="modal-header">
-            <h3>{{ showEditModal ? '编辑配置' : '添加新配置' }}</h3>
+            <h3>{{ showEditModal ? 'Edit Configuration' : 'Add New Configuration' }}</h3>
             <button class="close-btn" @click="closeModal">&times;</button>
           </div>
           <div class="modal-body">
           <form @submit.prevent="submitConfig">
             <div class="form-grid">
               <div class="form-group">
-                <label for="config-name">配置名称 *</label>
+                <label for="config-name">Configuration Name *</label>
                 <input
                   id="config-name"
                   v-model="currentConfig.name"
                   type="text"
-                  placeholder="例如: OpenAI配置"
+                  placeholder="e.g.: OpenAI Config"
                   required
                   class="input"
                 >
               </div>
 
               <div class="form-group">
-                <label for="api-key">API密钥 *</label>
+                <label for="api-key">API Key *</label>
                 <input
                   id="api-key"
                   v-model="currentConfig.api_key"
                   type="password"
-                  placeholder="输入您的API密钥"
+                  placeholder="Enter your API key"
                   required
                   class="input"
                 >
               </div>
 
               <div class="form-group">
-                <label for="base-url">API基础URL *</label>
+                <label for="base-url">API Base URL *</label>
                 <input
                   id="base-url"
                   v-model="currentConfig.base_url"
                   type="url"
-                  placeholder="例如: https://api.openai.com/v1"
+                  placeholder="e.g.: https://api.openai.com/v1"
                   required
                   class="input"
                 >
               </div>
 
               <div class="form-group">
-                <label for="model-name">对话模型</label>
+                <label for="model-name">Chat Model</label>
                 <input
                   id="model-name"
                   v-model="currentConfig.model_name"
                   type="text"
-                  placeholder="例如: gpt-3.5-turbo, gpt-4, claude-3-sonnet"
+                  placeholder="e.g.: gpt-3.5-turbo, gpt-4, claude-3-sonnet"
                   class="input"
                 >
-                <small>输入您要使用的对话模型名称</small>
+                <small>Enter the name of the chat model to use</small>
               </div>
 
               <div class="form-group">
-                <label for="embedding-model">嵌入模型</label>
+                <label for="embedding-model">Embedding Model</label>
                 <input
                   id="embedding-model"
                   v-model="currentConfig.embedding_model"
                   type="text"
-                  placeholder="例如: text-embedding-ada-002"
+                  placeholder="e.g.: text-embedding-ada-002"
                   class="input"
                 >
-                <small>输入您要使用的嵌入模型名称</small>
+                <small>Enter the name of the embedding model to use</small>
               </div>
 
               <div class="form-group">
-                <label for="temperature">温度 (0-1)</label>
+                <label for="temperature">Temperature (0-1)</label>
                 <input
                   id="temperature"
                   v-model="currentConfig.temperature"
@@ -155,11 +155,11 @@
                   step="0.1"
                   class="input"
                 >
-                <small>值越高，回答越随机</small>
+                <small>Higher values produce more random responses</small>
               </div>
 
               <div class="form-group">
-                <label for="max-tokens">最大Token数</label>
+                <label for="max-tokens">Max Tokens</label>
                 <input
                   id="max-tokens"
                   v-model="currentConfig.max_tokens"
@@ -168,7 +168,7 @@
                   max="4000"
                   class="input"
                 >
-                <small>控制回答的最大长度</small>
+                <small>Controls the maximum length of responses</small>
               </div>
             </div>
 
@@ -179,13 +179,13 @@
                 class="btn btn-secondary"
                 :disabled="testingConnection"
               >
-                <span v-if="testingConnection">测试中...</span>
-                <span v-else>测试连接</span>
+                <span v-if="testingConnection">Testing...</span>
+                <span v-else>Test Connection</span>
               </button>
               <div class="action-buttons">
-                <button type="button" @click="closeModal" class="btn btn-outline">取消</button>
+                <button type="button" @click="closeModal" class="btn btn-outline">Cancel</button>
                 <button type="submit" class="btn btn-primary" :disabled="testingConnection">
-                  {{ showEditModal ? '更新配置' : '创建配置' }}
+                  {{ showEditModal ? 'Update Configuration' : 'Create Configuration' }}
                 </button>
               </div>
             </div>
@@ -233,9 +233,9 @@ export default {
   computed: {
     connectionStatus() {
       if (this.activeConfig) {
-        return { class: 'success', text: '已连接' };
+        return { class: 'success', text: 'Connected' };
       } else {
-        return { class: 'error', text: '未配置' };
+        return { class: 'error', text: 'Not configured' };
       }
     }
   },
@@ -249,7 +249,7 @@ export default {
         const response = await axios.get(`${API_URL}/ai-configs/`);
         this.configs = response.data;
       } catch (error) {
-        console.error('获取配置列表失败:', error);
+        console.error('Failed to fetch configurations:', error);
       }
     },
     async fetchActiveConfig() {
@@ -259,7 +259,7 @@ export default {
           this.activeConfig = response.data.config;
         }
       } catch (error) {
-        console.error('获取激活配置失败:', error);
+        console.error('Failed to fetch active configuration:', error);
       }
     },
     async setActiveConfig(configId) {
@@ -276,15 +276,15 @@ export default {
         
         this.fetchConfigs();
         this.fetchActiveConfig();
-        alert('配置激活成功');
+        alert('Configuration activated');
       } catch (error) {
-        console.error('激活配置失败:', error);
-        alert('激活配置失败');
+        console.error('Failed to activate configuration:', error);
+        alert('Failed to activate configuration');
       }
     },
     async testConnection() {
       if (!this.currentConfig.api_key || !this.currentConfig.base_url) {
-        alert('请填写API密钥和基础URL');
+        alert('Please fill in API key and base URL');
         return;
       }
 
@@ -305,7 +305,7 @@ export default {
       } catch (error) {
         this.testResult = {
           success: false,
-          message: '测试连接失败: ' + (error.response?.data?.error || error.message)
+          message: 'Test connection failed: ' + (error.response?.data?.error || error.message)
         };
       } finally {
         this.testingConnection = false;
@@ -316,19 +316,19 @@ export default {
         if (this.showEditModal) {
           // 更新配置
           await axios.put(`${API_URL}/ai-configs/${this.currentConfig.id}/`, this.currentConfig);
-          alert('配置更新成功');
+          alert('Configuration updated successfully');
         } else {
           // 创建新配置
           await axios.post(`${API_URL}/ai-configs/`, this.currentConfig);
-          alert('配置创建成功');
+          alert('Configuration created successfully');
         }
 
         this.closeModal();
         this.fetchConfigs();
         this.fetchActiveConfig();
       } catch (error) {
-        console.error('保存配置失败:', error);
-        alert('保存配置失败');
+        console.error('Failed to save configuration:', error);
+        alert('Failed to save configuration');
       }
     },
     editConfig(config) {
@@ -336,7 +336,7 @@ export default {
       this.showEditModal = true;
     },
     async deleteConfig(configId) {
-      if (!confirm('确定要删除这个配置吗？')) {
+      if (!confirm('Are you sure you want to delete this configuration?')) {
         return;
       }
 
@@ -344,10 +344,10 @@ export default {
         await axios.delete(`${API_URL}/ai-configs/${configId}/`);
         this.fetchConfigs();
         this.fetchActiveConfig();
-        alert('配置删除成功');
+        alert('Configuration deleted successfully');
       } catch (error) {
-        console.error('删除配置失败:', error);
-        alert('删除配置失败');
+        console.error('Failed to delete configuration:', error);
+        alert('Failed to delete configuration');
       }
     },
     closeModal() {
@@ -373,7 +373,7 @@ export default {
       return apiKey.substring(0, 8) + '***' + apiKey.substring(apiKey.length - 4);
     },
     formatDate(dateString) {
-      return new Date(dateString).toLocaleString('zh-CN');
+      return new Date(dateString).toLocaleString('en-US');
     }
   }
 };

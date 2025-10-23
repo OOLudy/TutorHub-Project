@@ -2,8 +2,8 @@
   <div class="start-page">
     <div class="container">
       <div class="page-header">
-        <h1>上传PDF文档</h1>
-        <p>上传您的PDF文档，我们将为您处理后续分析</p>
+        <h1>Upload PDF Document</h1>
+        <p>Upload your PDF document and we'll handle the subsequent analysis</p>
       </div>
 
       <!-- 上传区域 -->
@@ -20,12 +20,12 @@
             <div class="upload-icon">
               📄
             </div>
-            <h3 v-if="!selectedFile">点击选择或拖拽PDF文件到此区域</h3>
+            <h3 v-if="!selectedFile">Click or drag a PDF file here to select</h3>
             <div v-else class="file-info">
               <h3>{{ selectedFile.name }}</h3>
-              <p>大小: {{ formatFileSize(selectedFile.size) }}</p>
+              <p>Size: {{ formatFileSize(selectedFile.size) }}</p>
             </div>
-            <p class="upload-hint">支持PDF格式，最大10MB</p>
+            <p class="upload-hint">PDF only, max 10MB</p>
           </div>
           <input
             ref="fileInput"
@@ -38,12 +38,12 @@
 
         <!-- 文件标题输入 -->
         <div v-if="selectedFile" class="title-input">
-          <label for="document-title">文档标题</label>
+          <label for="document-title">Document Title</label>
           <input
             id="document-title"
             v-model="documentTitle"
             type="text"
-            placeholder="请输入文档标题"
+            placeholder="Enter document title"
             class="input"
           >
         </div>
@@ -56,7 +56,7 @@
             class="btn btn-secondary"
             :disabled="isUploading"
           >
-            重新选择
+            Re-select
           </button>
           <button 
             v-if="selectedFile" 
@@ -64,15 +64,15 @@
             class="btn btn-primary"
             :disabled="!documentTitle || isUploading"
           >
-            <span v-if="isUploading">上传中...</span>
-            <span v-else>上传文档</span>
+            <span v-if="isUploading">Uploading...</span>
+            <span v-else>Upload Document</span>
           </button>
         </div>
       </div>
 
       <!-- 上传历史 -->
       <div v-if="documents.length > 0" class="documents-section">
-        <h2>已上传的文档</h2>
+        <h2>Uploaded Documents</h2>
         <div class="documents-grid">
           <div 
             v-for="doc in documents" 
@@ -83,13 +83,13 @@
             <div class="document-info">
               <h4>{{ doc.title }}</h4>
               <p class="document-meta">
-                大小: {{ formatFileSize(doc.file_size) }} • 
-                上传时间: {{ formatDate(doc.uploaded_at) }}
+                Size: {{ formatFileSize(doc.file_size) }} • 
+                Uploaded: {{ formatDate(doc.uploaded_at) }}
               </p>
             </div>
             <div class="document-actions">
-              <button @click="viewDocument(doc)" class="btn btn-sm btn-secondary">查看</button>
-              <router-link :to="'/process'" class="btn btn-sm btn-process">处理</router-link>
+              <button @click="viewDocument(doc)" class="btn btn-sm btn-secondary">View</button>
+              <router-link :to="'/process'" class="btn btn-sm btn-process">Process</router-link>
               <!--你不准删除！
               <button @click="deleteDocument(doc.id)" class="btn btn-sm btn-danger">删除</button>
               -->
@@ -100,7 +100,7 @@
 
       <!-- 空状态 -->
       <div v-else class="empty-state">
-        <p>暂无上传的文档</p>
+        <p>No uploaded documents yet</p>
       </div>
     </div>
   </div>
@@ -154,13 +154,13 @@ export default {
     handleFileSelection(file) {
       // 验证文件类型
       if (file.type !== 'application/pdf') {
-        alert('请选择PDF文件');
+        alert('Please select a PDF file');
         return;
       }
       
       // 验证文件大小 (10MB)
       if (file.size > 10 * 1024 * 1024) {
-        alert('文件大小不能超过10MB');
+        alert('File size must not exceed 10MB');
         return;
       }
       
@@ -175,7 +175,7 @@ export default {
     },
     async uploadPDF() {
       if (!this.selectedFile || !this.documentTitle) {
-        alert('请选择文件并输入标题');
+        alert('Please select a file and enter a title');
         return;
       }
 
@@ -195,11 +195,11 @@ export default {
         // 上传成功
         this.documents.unshift(response.data);
         this.clearSelection();
-        alert('文档上传成功！');
+  alert('Document uploaded successfully!');
 
       } catch (error) {
-        console.error('上传失败:', error);
-        alert('上传失败，请重试');
+        console.error('Upload failed:', error);
+        alert('Upload failed, please try again');
       } finally {
         this.isUploading = false;
       }
@@ -209,25 +209,25 @@ export default {
         const response = await axios.get(`${API_URL}/pdfs/`);
         this.documents = response.data;
       } catch (error) {
-        console.error('获取文档列表失败:', error);
+        console.error('Failed to fetch documents:', error);
       }
     },
     async deleteDocument(documentId) {
-      if (!confirm('确定要删除这个文档吗？')) {
+      if (!confirm('Are you sure you want to delete this document?')) {
         return;
       }
 
       try {
         await axios.delete(`${API_URL}/pdfs/${documentId}/`);
         this.documents = this.documents.filter(doc => doc.id !== documentId);
-        alert('文档删除成功');
+        alert('Document deleted successfully');
       } catch (error) {
-        console.error('删除失败:', error);
-        alert('删除失败，请重试');
+        console.error('Delete failed:', error);
+        alert('Delete failed, please try again');
       }
     },
     viewDocument(doc) {
-      // 在新窗口打开PDF
+      // Open PDF in a new window
       window.open(doc.pdf_file, '_blank');
     },
     formatFileSize(bytes) {
@@ -238,7 +238,7 @@ export default {
       return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     },
     formatDate(dateString) {
-      return new Date(dateString).toLocaleDateString('zh-CN');
+      return new Date(dateString).toLocaleDateString('en-US');
     }
   }
 };

@@ -1,26 +1,26 @@
 <template>
   <div class="home">
     <div class="hero-section">
-      <h1>欢迎使用TutorHub-Project</h1>
-      <p>тμтoяχαv ряоjест demo</p>
-      <router-link to="/start" class="cta-button">开始上传文件</router-link>
+  <h1>Welcome to TutorHub-Project</h1>
+  <p>тμтoяχαv project demo</p>
+  <router-link to="/start" class="cta-button">Start Uploading Files</router-link>
     </div>
     
     <div class="features-section">
       <div class="container">
-        <h2>功能特性</h2>
+        <h2>Features</h2>
         <div class="features-grid">
           <div class="feature-card">
-            <h3>文件管理</h3>
-            <p>轻松上传、分析、下载所需的文件</p>
+            <h3>File Management</h3>
+            <p>Easily upload, analyze, and download your documents</p>
           </div>
           <div class="feature-card">
-            <h3>AI辅助</h3>
-            <p>使用AI快速生成分析报告</p>
+            <h3>AI Assistance</h3>
+            <p>Quickly generate analysis reports with AI</p>
           </div>
           <div class="feature-card">
-            <h3>自定义输出</h3>
-            <p>用户可根据需要自行更改模型和策略</p>
+            <h3>Customizable Output</h3>
+            <p>Users can customize models and strategies as needed</p>
           </div>
         </div>
       </div>
