@@ -5,6 +5,7 @@
 在这里写下自己的名字或者任意内容，之后提交更改。（验证git功能是否正常）
 111
 Joe
+Eric
 
 ## AI Testing
 API source: AIHUBMIX
